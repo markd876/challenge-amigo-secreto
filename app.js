@@ -5,20 +5,26 @@ let listaAmigos = document.getElementById("listaAmigos");
 let resultado = document.getElementById("resultado");
 
 function limpiarResultado() {
-  resultado.innertHTML = "";
+  
+  resultado.innerHTML = "";
 }
 
-function renderListaAmigos(){
+function renderListaAmigos() {
+  
   listaAmigos.innerHTML = "";
-  for (let i = 0; i < amigos.length; i++){
+
+
+  for (let i = 0; i < amigos.length; i++) {
     const nombre = amigos[i];
     const li = document.createElement("li");
     li.textContent = nombre;
     listaAmigos.appendChild(li);
   }
+
+  
   if (amigos.length === 0) {
     const li = document.createElement("li");
-    li.textContent = "No hay amigos agregados todavia.";
+    li.textContent = "No hay amigos agregados todavía.";
     listaAmigos.appendChild(li);
   }
 }
@@ -26,21 +32,39 @@ function renderListaAmigos(){
 function agregarAmigo() {
   let nombre = (inputAmigos.value || "").trim();
 
-  if (!nombre){
+  
+  if (!nombre) {
     alert("Por favor ingresa un nombre");
     inputAmigos.focus();
     return;
   }
+
+  
+  const existe = amigos.some((a) => a.toLowerCase() === nombre.toLowerCase());
+  if (existe) {
+    alert("Este amigo ya está en la lista");
+    inputAmigos.select();
+    return;
+  }
+
+  
+  amigos.push(nombre);
+
+  
+  renderListaAmigos();
+
+  
+  inputAmigos.value = "";
+  inputAmigos.focus();
+
+  
+  limpiarResultado();
 }
 
-const existe = amigos.some((a) => a.toLowerCase() === nombre.toLowerCase());
-if (existe) {
-  alert("Este amigo ya está en la lista");
-  inputAmigos.Selected();
-  return;
-}
-amigos.push(nombre);
+
 renderListaAmigos();
-inputAmigos.value = "";
-inputAmigos.focus();
-limpiarResultado();
+
+
+inputAmigos.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") agregarAmigo();
+});
