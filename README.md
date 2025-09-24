@@ -2,7 +2,7 @@
 
 Aplicación web sencilla para gestionar una lista de amigos y sortear aleatoriamente un “amigo secreto”. Construida con HTML, CSS y JavaScript puro (sin frameworks).
 
-Repositorio: https://github.com/agustincl01/challenge-amigo-secreto
+Repositorio: https://github.com/markd876/challenge-amigo-secreto
 
 ## Tabla de contenidos
 - [Demo local](#demo-local)
